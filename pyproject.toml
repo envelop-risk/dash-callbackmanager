@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dash-callbackmanager"
-version = "0.9.0"
+version = "1.0.0"
 description = "Dash callback manager, group callbacks easier within code."
 authors = ["Matt Seymour <matt@enveloprisk.com>"]
 license = "MIT"
