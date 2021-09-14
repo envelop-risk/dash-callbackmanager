@@ -9,8 +9,9 @@ class CallbackManager:
     instansiate it.
     """
 
-    def __init__(self):
+    def __init__(self, *managers: "CallbackManager"):
         self._callbacks = []
+        self._managers = managers
 
     def callback(self, *args, **kwargs):
         """
@@ -56,3 +57,6 @@ class CallbackManager:
                 state,
                 **kwargs,
             )(func)
+
+        for manager in self._managers:
+            manager.register_callbacks(app)

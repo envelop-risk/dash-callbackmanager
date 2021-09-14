@@ -41,8 +41,37 @@ class TestCallbackManager(TestCase):
             callback["state"],
             [
                 {
-                    "id": "test-state",
-                    "property": "children",
+                    "id": "state-data",
+                    "property": "",
                 }
             ],
         )
+
+    def test_sub_managers(self):
+        app = Dash(name="test", server=False)
+        manager1 = CallbackManager()
+
+        @manager1.callback(Output("manager1", "value"))
+        def func1():
+            ...
+
+        manager2 = CallbackManager()
+
+        @manager2.callback(Output("manager2", "value"))
+        def func2():
+            ...
+
+        base_manager = CallbackManager(manager1, manager2)
+
+        @base_manager.callback(Output("base_manager", "test"))
+        def base_func():
+            ...
+
+        base_manager.register_callbacks(app)
+
+        self.assertEqual(len(app.callback_map), 3)
+        self.assertListEqual(list(app.callback_map.keys()), [
+            "base_manager.test",
+            "manager1.value",
+            "manager2.value",
+        ])
