@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "dash-callbackmanager"
-version = "1.0.0"
+version = "2.0.0"
 description = "Dash callback manager, group callbacks easier within code."
 authors = ["Matt Seymour <matt@enveloprisk.com>"]
 license = "MIT"
@@ -12,6 +12,7 @@ repository = "https://github.com/envelop-risk/dash-callbackmanager"
 classifiers = [
     "Topic :: Software Development :: Libraries :: Python Modules"
 ]
+readme = "readme.md"
 
 
 [tool.poetry.dependencies]
